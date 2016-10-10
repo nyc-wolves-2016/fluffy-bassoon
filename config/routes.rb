@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  root 'welcome#index'
+
+  post '/register' => 'user#create'
+  get '/login' => 'session#new'
+  delete '/logout' => 'session#delete'
+
+  resources :users, except: [:edit, :delete]
+  resources :sessions, only: [:new, :create, :delete]
 end
