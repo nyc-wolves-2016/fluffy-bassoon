@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
+  get '/register' => 'users#new'
+  get '/login' => 'sessions#new'
+  get '/profile' => 'users#show'
+  delete '/logout' => 'session#destroy'
+
+  resources :users, except: [:edit, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
 
   root 'welcome#index'
-
-  post '/register' => 'user#create'
-  get '/login' => 'session#new'
-  delete '/logout' => 'session#delete'
-
-  resources :users, except: [:edit, :delete]
-  resources :sessions, only: [:new, :create, :delete]
 end
