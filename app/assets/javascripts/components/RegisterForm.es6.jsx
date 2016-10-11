@@ -44,6 +44,12 @@ class RegisterForm extends React.Component {
       method: 'POST',
       data: data
     })
+    .done(function(response){
+      console.log(response);
+      console.log(response.status);
+      debugger
+
+    })
   }
 
   render() {

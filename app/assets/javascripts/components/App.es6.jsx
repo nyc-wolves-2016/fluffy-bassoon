@@ -18,7 +18,12 @@ class App extends React.Component {
     return(
       <div>
         <HomeTabs TabToggle={this.TabToggle}/>
+        <div>
+          <h1> This is where the board goes</h1>
+        </div>
       </div>
+
+
     );
   }
 }

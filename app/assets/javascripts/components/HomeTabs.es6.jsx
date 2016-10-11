@@ -5,7 +5,7 @@ class HomeTabs extends React.Component {
     const { TabToggle } = this.props;
 
     return(
-      <div>
+      <div className="login_box">
         <ul className="nav nav-tabs menu-tabs" role="tablist">
           <li role="presentation" className="active" onClick={TabToggle}>
             <a href="#login" aria-controls="login" role="tab" data-toggle="tab">Login</a>
