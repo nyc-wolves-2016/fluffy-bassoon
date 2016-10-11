@@ -18,12 +18,23 @@ class App extends React.Component {
     return(
       <div>
         <HomeTabs TabToggle={this.TabToggle}/>
-        <div>
-          <h1> This is where the board goes</h1>
+
+        <div className="jumbotron">
+          <h1>This is where the game board will be</h1>
+          <div className="row">
+            <div className="col-xs-6 col-md-3">
+              <a href="#" className="thumbnail">
+                this will be an image
+              </a>
+            </div>
+            ...
+          </div>
+
+
+
+          <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
         </div>
       </div>
-
-
     );
   }
 }
