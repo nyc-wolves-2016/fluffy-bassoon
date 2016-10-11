@@ -31,14 +31,14 @@ class App extends React.Component {
 
             <div className="col-xs-4 col-md-2">
               <a href="#" className="thumbnail">
-                <object data="/shapes/filled_circle.svg" type="image/svg+xml">
+                <object data="/shapes/filled_square.svg" type="image/svg+xml">
                 </object>
               </a>
             </div>
 
             <div className="col-xs-4 col-md-2">
               <a href="#" className="thumbnail">
-                <object data="/shapes/filled_circle.svg" type="image/svg+xml">
+                <object data="/shapes/filled_triangle.svg" type="image/svg+xml">
                 </object>
               </a>
             </div>
