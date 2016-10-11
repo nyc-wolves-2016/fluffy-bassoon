@@ -3,6 +3,8 @@ var Card = function(args={}) {
   this.shade = args["shade"],
   this.number = args["number"],
   this.shape = args["shape"]
+
+
 }
 
 var Deck = []
@@ -33,12 +35,17 @@ Array.prototype.randomCards = function(number) {
     }
   }
 
-Array.prototype.removeSet = function(array) {
-  array.forEach(function(card){
+Array.prototype.removeSet = function() {
+  this.forEach(function(card){
     var index = Board.indexOf(card)
     Board.splice(index, 1);
   })
 }
+
+
+
+
+
 
 buildBoard();
 var testArray = [Board[0], Board[1], Board[2]]
@@ -50,11 +57,8 @@ console.log(Board.length);
 console.log("")
 
 function sameColor(array) {
-  colorArray = array.map(function(card){
-    return card.color
-  })
-  return colorArray.every(function(color){
-    return color === "blue" || color === "red" || color === "yellow"
+  return array.every(function(card){
+    return card.color === array[0].color
   })
 };
 
@@ -74,11 +78,8 @@ function checkColor(array) {
 }
 
 function sameShape(array) {
-  shapeArray = array.map(function(card){
-    return card.shape
-  })
-  return shapeArray.every(function(shape){
-    return shape === "circle" || shape === "square" || shape === "triangle"
+  return array.every(function(card){
+    return card.shape === array[0].shape
   })
 };
 
@@ -98,11 +99,8 @@ function checkShape(array) {
 }
 
 function sameNumber(array) {
-  numberArray = array.map(function(card){
-      return card.number
-    })
-  return numberArray.every(function(number){
-    return number === "1" || number === "2" || number === "3"
+  return array.every(function(card){
+    return card.number === array[0].number
   })
 };
 
@@ -122,11 +120,8 @@ function checkNumber(array) {
 }
 
 function sameShade(array) {
-  shadeArray = array.map(function(card){
-    return card.shade
-  })
-  return shadeArray.every(function(shade){
-     return shade === "blank" || shade === "solid" || shade === "striped"
+  return array.every(function(card){
+     return card.shade === array[0].shade
   })
 };
 
@@ -149,13 +144,13 @@ function buildBoard() {
   return Deck.randomCards(9);
 }
 
-function addNewSet() {
+function addNewCards() {
   Deck.randomCards(3);
 }
 
 function validSet(setArray) {
   Board.removeSet(setArray);
-  addNewSet();
+  addNewCards();
 }
 
 function compareSet(setArray) {
@@ -166,40 +161,87 @@ function compareSet(setArray) {
   }
 }
 
-card1 = {"color" : "blue", "shade" : "solid", "shape" : "circle", "number" : "1"};
-card2 = {"color" : "blue", "shade" : "solid", "shape" : "triangle", "number" : "1"};
-card3 = {"color" : "blue", "shade" : "solid", "shape" : "square", "number" : "1"};
+function containsValidSet(boardArray, index) {
+    board = [boardArray]
+    if (compareSet(board)) {
 
-console.log(card1.number);
-console.log(card2.number);
-console.log(card3.number);
-var testArray = [card1, card2, card3];
-console.log(testArray);
+    }
+}
 
-console.log("");
-console.log(sameColor(testArray));
-console.log("Unique Shade should return false");
-console.log(uniqueShade(testArray));
-console.log(sameShade(testArray));
-console.log("");
-console.log(sameShade(testArray));
-console.log(sameNumber(testArray));
-console.log(sameShape(testArray));
-console.log("");
-console.log(compareSet(testArray));
+console.log("THIS IS TESTING A VALID SET")
+Deck.containsValidSet();
 
-
-// function colorCheck(testArray) {
-//   testArray.every(function(card){
-//     if (card.color === testArray[0].color) {
-//       return true
-//     } else if ( (card.color != card[0].color) && (card.color != card[1].color) ){
-//     } else {
-//       return false
-//     }
-//   })
-// };
+// Array.prototype.conainsValidSet = function() {
+//   this.forEach(function(card){
+//     numberCompare = this.map(function(mapCard){
+//       if (card.number === mapCard.number) {
+//         return mapCard
+//       }
+//     }.bind(this));
+//     colorCompare = this.map(function(mapCard){
+//       if (card.color === mapCard.color) {
+//         return mapCard
+//       }
+//     }.bind(this));
+//     shapeCompare = this.map(function(mapCard){
+//       if (card.shape === mapCard.shape) {
+//         return mapCard
+//       }
+//     }.bind(this));
+//     shadeCompare = this.map(function(mapCard){
+//       if (card.shade === mapCard.shade) {
+//         return mapCard
+//       }
+//     }.bind(this));
 //
-// function checkSet(testArray) {
-//   testArray.keys
+//   }.bind(this))
+//   if (numberCompare.length >= 3 || colorCompare >= 3 || shapeCompare >= 3 || shadeCompare >= 3) {
+//     return true
+//   } else {
+//     return false
+//   }
 // }
+
+//false
+// card1= { color: 'blue', shade: 'striped', number: '1', shape: 'circle' };
+// card2= { color: 'blue', shade: 'striped', number: '2', shape: 'triangle' };
+// card3= { color: 'blue', shade: 'striped', number: '2', shape: 'circle' };
+//
+// board = [card1, card2, card3]
+//
+// // true
+// Card { color: 'blue', shade: 'blank', number: '2', shape: 'square' },
+// Card { color: 'blue', shade: 'blank', number: '1', shape: 'square' },
+// Card { color: 'blue', shade: 'blank', number: '3', shape: 'square' }
+//
+// //false
+// Card { color: 'blue', shade: 'solid', number: '3', shape: 'square' },
+//
+// //
+// Card { color: 'yellow', shade: 'striped', number: '1', shape: 'circle' },
+// Card { color: 'yellow', shade: 'striped', number: '3', shape: 'square' },
+//
+// Card { color: 'red', shade: 'striped', number: '2', shape: 'triangle' },
+// Card { color: 'red', shade: 'solid', number: '1', shape: 'circle' },
+// Card { color: 'red', shade: 'striped', number: '3', shape: 'triangle' },
+// Card { color: 'red', shade: 'striped', number: '1', shape: 'circle' },
+// Card { color: 'red', shade: 'blank', number: '2', shape: 'square' },
+// Card { color: 'red', shade: 'solid', number: '2', shape: 'triangle' },
+// Card { color: 'red', shade: 'solid', number: '2', shape: 'circle' },
+
+// var testArray = [card1, card2, card3];
+// var incorrectArray = [card1, card2, card4];
+//
+
+
+
+//Load game
+buildBoard();
+// console.log(board);
+  // until Deck.length === 0 && !Board.containsValidSet()
+    // click on card, adds it to "setArray"
+    // once "setArray.length" === 3, compareSet
+    // if true, validSet(setArray) && set.state{ sets: += 1 }
+    // if !Board.containsValidSet()
+      // addNewCards();
+  // game over.
