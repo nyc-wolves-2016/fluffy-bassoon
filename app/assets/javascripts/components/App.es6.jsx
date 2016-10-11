@@ -4,7 +4,8 @@ class App extends React.Component {
     this.TabToggle = this.TabToggle.bind(this);
   }
 
-  debugger;
+
+
   TabToggle() {
     $('.menu-tabs').click('a', function(e) {
       e.preventDefault()
@@ -16,7 +17,7 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <HomeTabs  TabToggle={this.TabToggle}/>
+        <HomeTabs TabToggle={this.TabToggle}/>
       </div>
     );
   }
