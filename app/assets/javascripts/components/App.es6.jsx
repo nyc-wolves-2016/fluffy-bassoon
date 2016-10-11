@@ -3,8 +3,10 @@ class App extends React.Component {
     super();
     this.TabToggle = this.TabToggle.bind(this);
   }
-
-
+  componentWillMount() {
+    buildBoard();
+    validSetsOnBoard();
+  }
 
   TabToggle() {
     $('.menu-tabs').click('a', function(e) {
@@ -19,7 +21,7 @@ class App extends React.Component {
       <div>
         <HomeTabs TabToggle={this.TabToggle}/>
         <div>
-          <h1> This is where the board goes</h1>
+          <p className="testBoard"> This is where the board goes</p>
         </div>
       </div>
 
