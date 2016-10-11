@@ -1,0 +1,41 @@
+.card {
+  width: 150px;
+  height: 225px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  width: 50px;
+  margin: 0 auto;
+}
+
+.icon {
+  width: 50px;
+  margin: 0 auto;
+  padding-bottom: 5px;
+}
+
+.blue-fill {
+  fill: #0066ff;
+}
+
+.green-fill {
+  fill: #00cc66;
+}
+.red-fill {
+  fill: #ff4d4d;
+}
+
+.blue-striped {
+  fill:url(#blue-stripe);
+}
+.green-striped {
+  fill:url(#green-stripe);
+}
+
+.red-striped {
+  fill:url(#red-stripe);
+}
