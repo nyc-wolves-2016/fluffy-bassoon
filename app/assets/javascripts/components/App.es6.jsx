@@ -22,12 +22,26 @@ class App extends React.Component {
         <div className="jumbotron">
           <h1>This is where the game board will be</h1>
           <div className="row">
-            <div className="col-xs-6 col-md-3">
+            <div className="col-xs-4 col-md-2">
               <a href="#" className="thumbnail">
-                this will be an image
+                <object data="/shapes/filled_circle.svg" type="image/svg+xml">
+                </object>
               </a>
             </div>
-            ...
+
+            <div className="col-xs-4 col-md-2">
+              <a href="#" className="thumbnail">
+                <object data="/shapes/filled_circle.svg" type="image/svg+xml">
+                </object>
+              </a>
+            </div>
+
+            <div className="col-xs-4 col-md-2">
+              <a href="#" className="thumbnail">
+                <object data="/shapes/filled_circle.svg" type="image/svg+xml">
+                </object>
+              </a>
+            </div>
           </div>
 
 
