@@ -3,6 +3,13 @@ class App extends React.Component {
     super();
     this.TabToggle = this.TabToggle.bind(this);
   }
+
+  componentWillMount() {
+    buildBoard();
+    validSetsOnBoard();
+  }
+
+
   TabToggle() {
     $('.menu-tabs').click('a', function(e) {
       e.preventDefault()
@@ -15,13 +22,9 @@ class App extends React.Component {
     return(
       <div>
         <HomeTabs TabToggle={this.TabToggle}/>
+
         <GameBoard />
-
-
-            
-
-
-
+    
           <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
       </div>
     );
