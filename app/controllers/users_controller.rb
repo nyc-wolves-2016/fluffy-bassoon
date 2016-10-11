@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_action :require_user, only: [:show]
 
   def show
@@ -10,11 +10,12 @@ class UserController < ApplicationController
   end
 
   def create
+    binding.pry
     @user = User.new(user_params)
     if @user.save
       log_in @user
       flash[:success] = "Thanks for signing up!"
-      redirect_to @user
+      redirect_to user_path(@user)
     else
       render 'new'
     end
@@ -22,6 +23,6 @@ class UserController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation)
+      params.permit(:username, :email, :password)
     end
 end

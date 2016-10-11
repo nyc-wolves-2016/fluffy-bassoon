@@ -1,6 +1,9 @@
 class HomeTabs extends React.Component {
+
+
   render() {
     const { TabToggle } = this.props;
+
     return(
       <div>
         <ul className="nav nav-tabs menu-tabs" role="tablist">
