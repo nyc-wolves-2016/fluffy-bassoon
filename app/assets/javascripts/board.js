@@ -3,10 +3,7 @@ var Card = function(args={}) {
   this.shade = args["shade"],
   this.number = args["number"],
   this.shape = args["shape"]
-
-
 }
-
 var Deck = []
 
 colors = ["blue", "red", "yellow"];
@@ -43,18 +40,7 @@ Array.prototype.removeSet = function() {
 }
 
 
-
-
-
-
-buildBoard();
 var testArray = [Board[0], Board[1], Board[2]]
-
-validSet(testArray);
-console.log("Board")
-console.log(Deck.length);
-console.log(Board.length);
-console.log("")
 
 function sameColor(array) {
   return array.every(function(card){
@@ -161,15 +147,30 @@ function compareSet(setArray) {
   }
 }
 
-function containsValidSet(boardArray, index) {
-    board = [boardArray]
-    if (compareSet(board)) {
+function checkBoard(board){
+  board.find(function(card){
+    return compareSet(card)
+  });
 
-    }
 }
-
-console.log("THIS IS TESTING A VALID SET")
-Deck.containsValidSet();
+function validSetsOnBoard() {
+  event.preventDefault();
+  var data2 = {data: Board};
+  var xhr = $.ajax({
+    url: '/boards',
+    method: 'POST',
+    data:  data2
+  })
+  validSet = xhr.done(function(response){
+    newBoard = response.response
+    if (checkBoard(newBoard) != undefined) {
+      return true
+    } else {
+      return false
+    }
+  })
+  return validSet
+}
 
 // Array.prototype.conainsValidSet = function() {
 //   this.forEach(function(card){
@@ -236,7 +237,6 @@ Deck.containsValidSet();
 
 
 //Load game
-buildBoard();
 // console.log(board);
   // until Deck.length === 0 && !Board.containsValidSet()
     // click on card, adds it to "setArray"
