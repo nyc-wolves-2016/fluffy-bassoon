@@ -4,173 +4,169 @@ var Card = function(args={}) {
   this.number = args["number"],
   this.shape = args["shape"]
 }
-Deck = []
-
-colors = ["blue", "red", "yellow"];
-numbers = ["1","2","3"];
-shades = ["solid", "striped", "blank"];
-shapes = ["circle", "square", "triangle"];
-
-colors.forEach(function(color){
-  numbers.forEach(function(number){
-    shades.forEach(function(shade){
-      shapes.forEach(function(shape){
-        Deck.push(new Card({"shape" : shape, "shade": shade, "number": number, "color" : color}));
-      })
-    })
-  })
-})
-
-Board = []
-
-Array.prototype.randomCards = function(number) {
-  for(var i = 0; i < number; i++) {
-    var card = this[Math.floor(Math.random() * this.length)]
-    var index = Deck.indexOf(card)
-    Board.push(card)
-    Deck.splice(index, 1);
-    }
-  }
-
-Array.prototype.removeSet = function() {
-  this.forEach(function(card){
-    var index = Board.indexOf(card)
-    Board.splice(index, 1);
-  })
-}
+// Deck = []
 
 
-var testArray = [Board[0], Board[1], Board[2]]
+// colors.forEach(function(color){
+//   numbers.forEach(function(number){
+//     shades.forEach(function(shade){
+//       shapes.forEach(function(shape){
+//         Deck.push(new Card({"shape" : shape, "shade": shade, "number": number, "color" : color}));
+//       })
+//     })
+//   })
+// })
 
-function sameColor(array) {
-  return array.every(function(card){
-    return card.color === array[0].color
-  })
-};
+// Board = []
 
-function uniqueColor(array) {
-  arrayColors = array.map(function(card){
-    return card.color
-  }).sort()
-  return arrayColors.toString() === colors.toString();
-}
+// Array.prototype.randomCards = function(number) {
+//   for(var i = 0; i < number; i++) {
+//     var card = this[Math.floor(Math.random() * this.length)]
+//     var index = Deck.indexOf(card)
+//     Board.push(card)
+//     Deck.splice(index, 1);
+//     }
+//   }
+//
+// Array.prototype.removeSet = function() {
+//   this.forEach(function(card){
+//     var index = Board.indexOf(card)
+//     Board.splice(index, 1);
+//   })
+// }
+//
+//
+// var testArray = [Board[0], Board[1], Board[2]]
 
-function checkColor(array) {
-  if (sameColor(array) || uniqueColor(array)){
-    return true
-  } else {
-    return false
-  }
-}
+// function sameColor(array) {
+//   return array.every(function(card){
+//     return card.color === array[0].color
+//   })
+// };
+//
+// function uniqueColor(array) {
+//   arrayColors = array.map(function(card){
+//     return card.color
+//     }).sort()
+//   return arrayColors.toString() === colors.toString();
+// // }
+//
+// function checkColor(array) {
+//   if (sameColor(array) || uniqueColor(array)){
+//     return true
+//   } else {
+//     return false
+//   }
+// }
+//
+// function sameShape(array) {
+//   return array.every(function(card){
+//     return card.shape === array[0].shape
+//   })
+// };
+//
+// function uniqueShape(array) {
+//   arrayShapes = array.map(function(card){
+//     return card.shape
+//   }).sort()
+//   return arrayShapes.toString() === shapes.toString();
+// }
+//
+// function checkShape(array) {
+//   if (sameShape(array) || uniqueShape(array)){
+//     return true
+//   } else {
+//     return false
+//   }
+// }
+//
+// function sameNumber(array) {
+//   return array.every(function(card){
+//     return card.number === array[0].number
+//   })
+// };
+//
+// function uniqueNumber(array) {
+//   arrayNumbers = array.map(function(card){
+//     return card.number
+//   }).sort()
+//   return arrayNumbers.toString() === numbers.toString();
+// }
+//
+// function checkNumber(array) {
+//   if (sameNumber(array) || uniqueNumber(array)){
+//     return true
+//   } else {
+//     return false
+//   }
+// }
+//
+// function sameShade(array) {
+//   return array.every(function(card){
+//      return card.shade === array[0].shade
+//   })
+// };
+//
+// function uniqueShade(array) {
+//   arrayShades = array.map(function(card){
+//     return card.shade
+//   }).sort()
+//   return arrayShades.toString() === shades.toString();
+// }
+//
+// function checkShade(array) {
+//   if (sameShade(array) || uniqueShade(array)){
+//     return true
+//   } else {
+//     return false
+//   }
+// }
 
-function sameShape(array) {
-  return array.every(function(card){
-    return card.shape === array[0].shape
-  })
-};
+// function buildBoard() {
+//   return Deck.randomCards(9);
+// }
+//
+// function addNewCards() {
+//   return Deck.randomCards(3);
+// }
 
-function uniqueShape(array) {
-  arrayShapes = array.map(function(card){
-    return card.shape
-  }).sort()
-  return arrayShapes.toString() === shapes.toString();
-}
+// function validSet(setArray) {
+//   Board.removeSet(setArray);
+//   addNewCards();
+// }
 
-function checkShape(array) {
-  if (sameShape(array) || uniqueShape(array)){
-    return true
-  } else {
-    return false
-  }
-}
+// function compareSet(setArray) {
+//   if ( checkColor(setArray) && checkShape(setArray) && checkShade(setArray) && checkNumber(setArray) ) {
+//     return true
+//   } else {
+//     return false
+//   }
+// }
 
-function sameNumber(array) {
-  return array.every(function(card){
-    return card.number === array[0].number
-  })
-};
+// function checkBoard(board){
+//   board.find(function(card){
+//     return compareSet(card)
+//   });
 
-function uniqueNumber(array) {
-  arrayNumbers = array.map(function(card){
-    return card.number
-  }).sort()
-  return arrayNumbers.toString() === numbers.toString();
-}
-
-function checkNumber(array) {
-  if (sameNumber(array) || uniqueNumber(array)){
-    return true
-  } else {
-    return false
-  }
-}
-
-function sameShade(array) {
-  return array.every(function(card){
-     return card.shade === array[0].shade
-  })
-};
-
-function uniqueShade(array) {
-  arrayShades = array.map(function(card){
-    return card.shade
-  }).sort()
-  return arrayShades.toString() === shades.toString();
-}
-
-function checkShade(array) {
-  if (sameShade(array) || uniqueShade(array)){
-    return true
-  } else {
-    return false
-  }
-}
-
-function buildBoard() {
-  return Deck.randomCards(9);
-}
-
-function addNewCards() {
-  return Deck.randomCards(3);
-}
-
-function validSet(setArray) {
-  Board.removeSet(setArray);
-  addNewCards();
-}
-
-function compareSet(setArray) {
-  if ( checkColor(setArray) && checkShape(setArray) && checkShade(setArray) && checkNumber(setArray) ) {
-    return true
-  } else {
-    return false
-  }
-}
-
-function checkBoard(board){
-  board.find(function(card){
-    return compareSet(card)
-  });
-
-}
-function validSetsOnBoard() {
-  event.preventDefault();
-  var data2 = {data: Board};
-  var xhr = $.ajax({
-    url: '/boards',
-    method: 'POST',
-    data:  data2
-  })
-  validSet = xhr.done(function(response){
-    newBoard = response.response
-    if (checkBoard(newBoard) != undefined) {
-      return true
-    } else {
-      return false
-    }
-  })
-  return validSet
-}
+// // }
+// function validSetsOnBoard() {
+//   event.preventDefault();
+//   var data2 = {data: Board};
+//   var xhr = $.ajax({
+//     url: '/boards',
+//     method: 'POST',
+//     data:  data2
+//   })
+//   validSet = xhr.done(function(response){
+//     newBoard = response.response
+//     if (checkBoard(newBoard) != undefined) {
+//       return true
+//     } else {
+//       return false
+//     }
+//   })
+//   return validSet
+// }
 
 // Array.prototype.conainsValidSet = function() {
 //   this.forEach(function(card){
