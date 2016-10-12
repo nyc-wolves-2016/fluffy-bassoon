@@ -27,20 +27,20 @@ class GameBoard extends React.Component {
     // this.checkBoard = this.checkBoard.bind(this);
     // this.validSetsOnBoard = this.validSetsOnBoard.bind(this);
     // this.buildCards = this.buildCards.bind(this);
-
     this.state = {
       board: [],
       deck: [],
       chosenSet: []
     };
-
   }
   componentWillMount(){
-    this.buildCards();
-    this.buildBoard();
-    this.state.board.map((card, i) => Object.assign(card, {id: i}));
+    newDeck = this.buildCards();
+    this.setState({ deck: "test" });
+    debugger
   }
   componentDidMount() {
+    this.buildBoard();
+    this.state.board.map((card, i) => Object.assign(card, {id: i}));
   }
 
 //// Actually updates the state of the Board component ////
@@ -63,25 +63,8 @@ class GameBoard extends React.Component {
     this.randomCards(9)
   }
 
-  buildCards(){
-    var colors = ["blue", "red", "yellow"];
-    var numbers = ["1","2","3"];
-    var shades = ["solid", "striped", "blank"];
-    var shapes = ["circle", "square", "triangle"];
-    newDeck = []
-    colors.forEach(function(color){
-      numbers.forEach(function(number){
-        shades.forEach(function(shade){
-          shapes.forEach(function(shape){
-            var card = new Card({"shape" : shape, "shade": shade, "number": number, "color" : color})
-            newDeck.push(card);
-          })
-        })
-      })
-    })
-    this.setState({ deck: newDeck })
-    debugger
-  }
+
+
 
   createSet(event, id){
     const { chosenSet, board } = this.state
@@ -108,7 +91,24 @@ class GameBoard extends React.Component {
     })
   }
 
-
+  buildCards() {
+    var colors = ["blue", "red", "yellow"];
+    var numbers = ["1","2","3"];
+    var shades = ["solid", "striped", "blank"];
+    var shapes = ["circle", "square", "triangle"];
+    newDeck = []
+    colors.forEach(function(color){
+      numbers.forEach(function(number){
+        shades.forEach(function(shade){
+          shapes.forEach(function(shape){
+            var card = new Card({"shape" : shape, "shade": shade, "number": number, "color" : color})
+            newDeck.push(card);
+          })
+        })
+      })
+    })
+    return newDeck
+  }
 
 
 
