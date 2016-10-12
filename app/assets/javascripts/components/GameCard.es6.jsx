@@ -1,11 +1,17 @@
 class GameCard extends React.Component {
   render() {
+<<<<<<< HEAD
     let { shape, shade, number, color } = this.props.card;
      return(
 
+=======
+    const { createSet } = this.props;
+    return(
+>>>>>>> working on clicking svg
       <div className="row">
-      <div className="card">
+        <div className="card" onClick={createSet}>
 
+<<<<<<< HEAD
       for (var i = 0; i < {number}; i++) {
         if ({shape} === "circle") && ({shade} === "solid") {
           <FilledCircle color={color}/>
@@ -29,25 +35,18 @@ class GameCard extends React.Component {
       }
 
 
+=======
+            <FilledCircle/>
+>>>>>>> working on clicking svg
 
-          <object data="/shapes/filled_circle.svg" type="image/svg+xml">
-          </object>
+            {/* <object data="/shapes/filled_circle.svg" type="image/svg+xml">
+            </object>
 
-          <object data="/shapes/filled_circle.svg" type="image/svg+xml">
-          </object>
+            <object data="/shapes/filled_circle.svg" type="image/svg+xml">
+            </object> */}
 
-      </div>
-
-      <div className="card">
-          <object data="/shapes/filled_square.svg" type="image/svg+xml">
-          </object>
-      </div>
-
-      <div className="card">
-          <object data="/shapes/filled_triangle.svg" type="image/svg+xml">
-          </object>
-      </div>
-    </div>
+          </div>
+        </div>
     )
   }
 }

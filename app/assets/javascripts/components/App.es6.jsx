@@ -4,10 +4,6 @@ class App extends React.Component {
     this.TabToggle = this.TabToggle.bind(this);
   }
 
-  componentWillMount() {
-    buildBoard();
-    validSetsOnBoard();
-  }
 
 
   TabToggle() {
@@ -24,7 +20,7 @@ class App extends React.Component {
         <HomeTabs TabToggle={this.TabToggle}/>
 
         <GameBoard />
-    
+
           <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
       </div>
     );
