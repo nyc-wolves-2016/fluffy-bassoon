@@ -4,7 +4,7 @@ var Card = function(args={}) {
   this.number = args["number"],
   this.shape = args["shape"]
 }
-var Deck = []
+Deck = []
 
 colors = ["blue", "red", "yellow"];
 numbers = ["1","2","3"];
@@ -131,7 +131,7 @@ function buildBoard() {
 }
 
 function addNewCards() {
-  Deck.randomCards(3);
+  return Deck.randomCards(3);
 }
 
 function validSet(setArray) {

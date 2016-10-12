@@ -5,7 +5,6 @@ class BoardsController < ApplicationController
       end
     cards = board.map { |card| card[1] }
     response = cards.combination(3)
-    binding.pry
     render json: {response: response}
   end
 end
