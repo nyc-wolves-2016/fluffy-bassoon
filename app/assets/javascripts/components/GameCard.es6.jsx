@@ -1,52 +1,53 @@
 class GameCard extends React.Component {
-  render() {
-<<<<<<< HEAD
-    let { shape, shade, number, color } = this.props.card;
-     return(
 
-=======
+    findSVG(card) {
+      if ((card.shape === "circle") && (card.shade === "solid")) {
+        return <FilledCircle color={card.color}/>
+      } else if ((card.shape === "circle") && (card.shade === "blank")) {
+        return <BlankCircle color={card.color}/>
+      } else if ((card.shape === "circle") && (card.shade === "striped")) {
+        return <StripedCircle color={card.color}/>
+      } else if ((card.shape === "square") && (card.shade === "solid")) {
+        return <FilledSquare color={card.color}/>
+      } else if ((card.shape === "square") && (card.shade === "blank")) {
+        return <BlankSquare color={card.color}/>
+      } else if ((card.shape === "square") && (card.shade === "striped") ){
+        return <StripedSquare color={card.color}/>
+      } else if ((card.shape === "triangle") && (card.shade === "solid")) {
+        return <FilledTriangle color={card.color}/>
+      } else if ((card.shape === "triangle") && (card.shade === "blank")) {
+        return <BlankTriangle color={card.color}/>
+      } else if ((card.shape === "triangle") && (card.shade === "striped")) {
+        return <StripedTriangle color={card.color}/>
+      }
+    }
+
+    drawIcon(card) {
+      var cards = [];
+      for(let i = 0; i < parseInt(card.number); i++) {
+        cards.push(this.findSVG(card)
+      )}
+      return cards
+    }
+
+    onClickHandle(event) {
+      const { createSet } = this.props
+      const { id } = this.props.data
+
+      createSet(event, id)
+    }
+
+  render() {
+    let { shape, shade, number, color, id } = this.props.data;
     const { createSet } = this.props;
     return(
->>>>>>> working on clicking svg
       <div className="row">
-        <div className="card" onClick={createSet}>
-
-<<<<<<< HEAD
-      for (var i = 0; i < {number}; i++) {
-        if ({shape} === "circle") && ({shade} === "solid") {
-          <FilledCircle color={color}/>
-        } else if ({shape} === "circle") && ({shade} === "blank") {
-          <BlankCircle color={color}/>
-        } else if ({shape} === "circle") && ({shade} === "striped") {
-          <StripedCircle color={color}/>
-        } else if ({shape} === "square") && ({shade} === "solid") {
-          <FilledSquare color={color}/>
-        } else if ({shape} === "square") && ({shade} === "blank") {
-          <BlankSquare color={color}/>
-        } else if ({shape} === "square") && ({shade} === "striped") {
-          <StripedSquare color={color}/>
-        } else if ({shape} === "triangle") && ({shade} === "solid") {
-          <FilledTriangle color={color}/>
-        } else if ({shape} === "triangle") && ({shade} === "blank") {
-          <BlankTriangle color={color}/>
-        } else if ({shape} === "triangle") && ({shade} === "striped") {
-          <StripedTriangle color={color}/>
-        }
-      }
-
-
-=======
-            <FilledCircle/>
->>>>>>> working on clicking svg
-
-            {/* <object data="/shapes/filled_circle.svg" type="image/svg+xml">
-            </object>
-
-            <object data="/shapes/filled_circle.svg" type="image/svg+xml">
-            </object> */}
-
-          </div>
+        <div className="card" onClick={this.onClickHandle.bind(this)}>
+          <div className="icon-container">
+            { this.drawIcon(this.props.data) }
+            </div>
         </div>
+      </div>
     )
   }
 }

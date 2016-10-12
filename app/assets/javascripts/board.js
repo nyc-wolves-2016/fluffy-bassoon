@@ -131,7 +131,7 @@ function buildBoard() {
 }
 
 function addNewCards() {
-  Deck.randomCards(3);
+  return Deck.randomCards(3);
 }
 
 function validSet(setArray) {
