@@ -47,7 +47,6 @@ class RegisterForm extends React.Component {
     .done(function(response){
       console.log(response);
       console.log(response.status);
-      debugger
 
     })
   }
@@ -56,31 +55,31 @@ class RegisterForm extends React.Component {
     const { username, email, password, passwordConfirmation } = this.state;
 
     return(
-      <form onSubmit={this.registerUser} className="form-horizontal">
+      <form action="/users" method="post" className="form-horizontal">
         <div className="form-group">
         <label htmlFor="inputUsername3" className="col-sm-2 control-label">Username</label>
         <div className="col-sm-10">
-          <input type="text" onChange={this.userNameChange} value={username} className="form-control" id="inputUsername3" placeholder="Username" />
+          <input type="text" onChange={this.userNameChange} value={username} className="form-control" name="username" id="inputUsername3" placeholder="Username" />
         </div>
         </div>
 
         <div className="form-group">
           <label htmlFor="inputEmail3" className="col-sm-2 control-label">Email</label>
           <div className="col-sm-10">
-            <input type="email" onChange={this.emailChange} value={email} className="form-control" id="inputEmail3" placeholder="Email" />
+            <input type="email" onChange={this.emailChange} value={email} className="form-control" name="email" id="inputEmail3" placeholder="Email" />
           </div>
         </div>
         <div className="form-group">
           <label htmlFor="inputPassword3" className="col-sm-2 control-label">Password</label>
           <div className="col-sm-10">
-            <input type="password" onChange={this.passwordChange} value={password} className="form-control" id="inputPassword3" placeholder="Password" />
+            <input type="password" onChange={this.passwordChange} value={password} className="form-control" name="password" id="inputPassword3" placeholder="Password" />
           </div>
         </div>
 
         <div className="form-group">
           <label htmlFor="inputConfirmPassword3" className="col-sm-2 control-label">Password Confirmation</label>
           <div className="col-sm-10">
-            <input type="password" onChange={this.passwordConfirmChange} value={passwordConfirmation} className="form-control" id="inputConfirmPassword3" placeholder="Confirm Password" />
+            <input type="password" onChange={this.passwordConfirmChange} value={passwordConfirmation} className="form-control" name="password_confirmation"  id="inputConfirmPassword3" placeholder="Confirm Password" />
           </div>
         </div>
 

@@ -17,11 +17,10 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <HomeTabs TabToggle={this.TabToggle}/>
 
         <GameBoard />
 
-          
+
       </div>
     );
   }

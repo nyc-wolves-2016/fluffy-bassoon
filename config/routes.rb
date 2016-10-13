@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   post '/register' => 'users#create'
-  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
   get '/profile' => 'users#show'
-  delete '/logout' => 'session#destroy'
+  get '/logout' => 'sessions#destroy'
   post '/boards' => 'boards#index'
+  post '/users' => 'users#create'
   resources :users, except: [:create, :edit, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 

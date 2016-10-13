@@ -1,1 +1,5 @@
-<%= react_component 'App' %>
+<% if logged_in? %>
+    <%= react_component 'App' %>
+<% else %>
+  <%= react_component 'HomeTabs' %>
+<% end %>

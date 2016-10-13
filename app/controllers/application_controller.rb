@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user
+  helper_method :current_user, :logged_in?
 
     def log_in(user)
       session[:user_id] = user.id
@@ -21,5 +21,5 @@ class ApplicationController < ActionController::Base
       session.clear
     end
 
-    protect_from_forgery with: :exception
+    # protect_from_forgery with: :exception
 end

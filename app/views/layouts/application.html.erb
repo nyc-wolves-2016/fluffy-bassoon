@@ -16,6 +16,14 @@
   </head>
 
   <body>
+    <nav>
+      <ul>
+      <% if logged_in? %>
+        <li>Hello <%= current_user.username %></li>
+        <li><a href="/logout">Log Out</a></li>
+      <% end %>
+
+    </nav>
     <div class="container-fluid">
       <%= yield %>
     </div>

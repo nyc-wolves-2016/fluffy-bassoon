@@ -59,10 +59,10 @@ class GameBoard extends React.Component {
     })
   }
 
-  addNewCards(number) {
+  addNewCards() {
     const { deck, board } = this.state
     array = []
-    for(var i = 0; i < number; i++) {
+    for(var i = 0; i < 3; i++) {
       var index = this[Math.floor(Math.random() * deck.length)];
       // var index = this.state.deck.indexOf(card)
       array.push(card)
@@ -241,7 +241,7 @@ class GameBoard extends React.Component {
   render() {
     console.log("Yo this is the boards currrent state", this.state)
     return(
-      <div  onChange={this.checkNewCards} className="container">
+      <div className="container">
         { this.state.board.map((card, i) => {
 
           return <GameCard data={card} id={i} key={i} createSet={this.createSet}/>;

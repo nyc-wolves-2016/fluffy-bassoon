@@ -12,10 +12,17 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
+      log_in(@user)
+      binding.pry
+      if request.xhr?
       flash[:success] = "Thanks for signing up!"
+      else
+        redirect_to root_path
+      end
     else
-      render 'new'
+      @errors = @user.errors.full_messages
+      binding.pry
+      redirect_to root_path
     end
   end
 
