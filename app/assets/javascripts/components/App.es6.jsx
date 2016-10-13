@@ -21,7 +21,7 @@ class App extends React.Component {
 
         <GameBoard />
 
-          <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+          
       </div>
     );
   }

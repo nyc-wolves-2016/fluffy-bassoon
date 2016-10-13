@@ -1,204 +1,211 @@
 class GameBoard extends React.Component {
   constructor() {
     super();
-    // this.buildBoard = this.builBoard.bind(this);
-    // this.addNewCards = this.addNewCards.bind(this);
-    //
-    // this.createSet = this.createSet.bind(this);
-    // this.validSet = this.validSet.bind(this);
-    // this.compareSet = this.compareSet.bind(this);
-    //
-    // this.sameColor = this.sameColor.bind(this);
-    // this.uniqueColor = this.uniqueColor.bind(this);
-    // this.checkColor = this.checkColor.bind(this);
-    //
-    // this.sameShape = this.sameShape.bind(this);
-    // this.uniqueShape = this.uniqueShape.bind(this);
-    // this.checkShape = this.checkShape.bind(this);
-    //
-    // this.sameShade = this.sameShade.bind(this);
-    // this.checkShade = this.checkShade.bind(this);
-    // this.uniqueShade = this.uniqueShade.bind(this);
-    //
-    // this.sameNumber = this.sameNumber.bind(this);
-    // this.uniqueNumber = this.uniqueNumber.bind(this);
-    // this.checkNumber = this.checkNumber.bind(this);
-    //
-    // this.checkBoard = this.checkBoard.bind(this);
-    // this.validSetsOnBoard = this.validSetsOnBoard.bind(this);
-    // this.buildCards = this.buildCards.bind(this);
     this.state = {
-      board: [],
-      deck: [],
+      deck: this.buildCards(),
+      board: this.buildBoard(),
       chosenSet: []
     };
+    // this.buildCards = this.buildCards.bind(this);
+    // this.buildBoard = this.buildBoard.bind(this);
+    this.addNewCards = this.addNewCards.bind(this);
+    this.createSet = this.createSet.bind(this);
+    this.compareSet = this.compareSet.bind(this);
+    this.sameColor = this.sameColor.bind(this);
+    this.uniqueColor = this.uniqueColor.bind(this);
+    this.checkColor = this.checkColor.bind(this);
+
   }
-  componentWillMount(){
-    newDeck = this.buildCards();
-    this.setState({ deck: "test" });
-    debugger
-  }
-  componentDidMount() {
-    this.buildBoard();
-    this.state.board.map((card, i) => Object.assign(card, {id: i}));
-  }
+
 
 //// Actually updates the state of the Board component ////
-  addNewCards() {
-    this.randomCards(3)
-  }
-
-  randomCards(number) {
-    newBoard = []
-    for(var i = 0; i < number; i++) {
-      var card = this[Math.floor(Math.random() * this.length)]
-      var index = this.state.deck.indexOf(card)
-      newBoard.push(card)
-      this.setState({deck: this.state.deck.splice(index, 1) });
-      }
-    this.setState({board: newBoard })
-    }
-
   buildBoard(){
-    this.randomCards(9)
-  }
+    var deck = this.buildCards();
+    array = []
+    for(var i = 0; i < 9; i++) {
+      var index = Math.floor(Math.random() * deck.length);
+      var card = deck[index]
+      array.push(card)
+      deck.splice(index, 1)
+      // this.setState({deck: this.state.deck.splice(index, 1) });
+      }
+    return array
 
-
-
-
-  createSet(event, id){
-    const { chosenSet, board } = this.state
-    const selectedCard = board.find(card => card.id)
-    if (chosenSet.length < 3) {
-      chosenSet.push(selectedCard)
-      this.setState({chosenSet: chosenSet})
-    } else if (compareSet(chosenSet)) {
-      board.removeSet(chosenSet)
-      board.push(addNewCards())
-      this.setState({board: board})
-    }
-  }
-
-  validSet(setArray) {
-    removeSet(setArray);
-    addNewCards();
-  }
-
-  removeSet(set) {
-    this.forEach(function(card){
-      var index = this.state.board.indexOf(card)
-      this.setState({board: this.state.board.splice(index, 1)});
-    })
+    // .map((card, i) => Object.assign(card, {id: i}))
   }
 
   buildCards() {
-    var colors = ["blue", "red", "yellow"];
+    var colors = ["blue", "red", "green"];
     var numbers = ["1","2","3"];
     var shades = ["solid", "striped", "blank"];
     var shapes = ["circle", "square", "triangle"];
-    newDeck = []
-    colors.forEach(function(color){
-      numbers.forEach(function(number){
-        shades.forEach(function(shade){
+    array = []
+     colors.forEach(function(color){
+       numbers.forEach(function(number){
+         shades.forEach(function(shade){
           shapes.forEach(function(shape){
-            var card = new Card({"shape" : shape, "shade": shade, "number": number, "color" : color})
-            newDeck.push(card);
+            return array.push(new Card({"shape" : shape, "shade": shade, "number": number, "color" : color}))
           })
         })
       })
     })
-    return newDeck
+    return array
   }
 
+  removeStartCards(array) {
+    return this.state.board.forEach(function(card){
+      var index = this.state.board.indexOf(card)
+      this.SetState({ deck: this.state.deck.splice(index, 1) })
+    })
+  }
 
+  addNewCards(number) {
+    const { deck, board } = this.state
+    array = []
+    for(var i = 0; i < number; i++) {
+      var index = this[Math.floor(Math.random() * deck.length)];
+      // var index = this.state.deck.indexOf(card)
+      array.push(card)
+      // this.setState({deck: this.state.deck.splice(index, 1) });
+      }
+      if (board.length < 9) {
+        return this.setState({ board: array.concat(board)});
+      }
+    }
+
+  createSet(id){
+    const { chosenSet, board } = this.state;
+    var selectedCard = board[id];
+
+    chosenSet.push(selectedCard);
+    this.setState({chosenSet: chosenSet});
+
+    if (chosenSet.length >= 3) {
+
+      if (this.compareSet()) {
+        this.removeSet();
+      } else {
+        alert("NOT A SET!")
+        return this.setState({ chosenSet: [] })
+      }
+    }
+  }
+
+  removeSet(){
+    const { chosenSet, board, deck } = this.state
+    chosenSet.forEach(function(card){
+      index = board.indexOf(card);
+      board.splice(index, 1);
+      deckIndex = deck.indexOf(card);
+      deck.splice(deckIndex, 1);
+    })
+    this.setState({ chosenSet: []})
+  }
+      // compare the set to see if its validSet
+      // if valid - remove these cards from the board array
+      // and reset the chosenSet array
 
 ////// Only Compares the attributes of the Card /////
-    compareSet(setArray) {
-      if ( checkColor(setArray) && checkShape(setArray) && checkShade(setArray) && checkNumber(setArray) ) {
+    compareSet() {
+      if ( this.checkColor() && this.checkShape() && this.checkShade() && this.checkNumber() ) {
         return true
       } else {
         return false
       }
     }
 
-    sameColor(array) {
-      return array.every(function(card){
-        return card.color === array[0].color
+    sameColor() {
+      const { chosenSet, board } = this.state
+      return chosenSet.every(function(card){
+        return card.color === chosenSet[0].color
       })
     }
 
-    uniqueColor(array) {
-      arrayColors = array.map(function(card){
+    uniqueColor() {
+      const { chosenSet, board } = this.state
+      var colors = ["blue", "green", "red" ];
+
+      var arrayColors = chosenSet.map(function(card){
         return card.color
       }).sort()
       return arrayColors.toString() === colors.toString();
     }
 
-    checkColor(array) {
-      if (sameColor(array) || uniqueColor(array)){
+    checkColor() {
+      if (this.sameColor() || this.uniqueColor()){
         return true
       } else {
         return false
       }
     }
 
-    sameShape(array) {
-      return array.every(function(card){
-        return card.shape === array[0].shape
+    sameShape() {
+      const { chosenSet, board } = this.state
+      return chosenSet.every(function(card){
+        return card.shape === chosenSet[0].shape
       })
     }
 
-    uniqueShape(array) {
-      arrayShapes = array.map(function(card){
+    uniqueShape() {
+      const { chosenSet, board } = this.state
+      var shapes = ["circle", "square", "triangle"];
+
+      var arrayShapes = chosenSet.map(function(card){
         return card.shape
       }).sort()
       return arrayShapes.toString() === shapes.toString();
     }
 
-    checkShape(array) {
-      if (sameShape(array) || uniqueShape(array)){
+    checkShape() {
+      if (this.sameShape() || this.uniqueShape()){
         return true
       } else {
         return false
       }
     }
 
-    sameNumber(array) {
-      return array.every(function(card){
-        return card.number === array[0].number
+    sameNumber() {
+      const { chosenSet, board } = this.state
+      return chosenSet.every(function(card){
+        return card.number === chosenSet[0].number
       })
     };
 
-    uniqueNumber(array) {
-      arrayNumbers = array.map(function(card){
+    uniqueNumber() {
+      const { chosenSet, board } = this.state
+      var numbers = ["1","2","3"];
+      var arrayNumbers = chosenSet.map(function(card){
         return card.number
       }).sort()
       return arrayNumbers.toString() === numbers.toString();
     }
 
-    checkNumber(array) {
-      if (sameNumber(array) || uniqueNumber(array)){
+    checkNumber() {
+      if (this.sameNumber() || this.uniqueNumber()){
         return true
       } else {
         return false
       }
     }
 
-    sameShade(array) {
-      return array.every(function(card){
-         return card.shade === array[0].shade
+    sameShade() {
+      const { chosenSet, board } = this.state
+      return chosenSet.every(function(card){
+         return card.shade === chosenSet[0].shade
       })
     };
 
-    uniqueShade(array) {
-      arrayShades = array.map(function(card){
+    uniqueShade() {
+      const { chosenSet, board } = this.state
+      var shades = ["blank", "solid", "striped"]
+      var arrayShades = chosenSet.map(function(card){
         return card.shade
       }).sort()
       return arrayShades.toString() === shades.toString();
     }
 
-    checkShade(array) {
-      if (sameShade(array) || uniqueShade(array)){
+    checkShade() {
+      if (this.sameShade() || this.uniqueShade()){
         return true
       } else {
         return false
@@ -234,11 +241,12 @@ class GameBoard extends React.Component {
   render() {
     console.log("Yo this is the boards currrent state", this.state)
     return(
-      <div className="jumbotron">
+      <div  onChange={this.checkNewCards} className="container">
         { this.state.board.map((card, i) => {
 
           return <GameCard data={card} id={i} key={i} createSet={this.createSet}/>;
         })}
+        <p><a onclick={this.submitComparison}className="btn btn-primary btn-lg" href="#" role="button">Compare Your Set</a></p>
       </div>
     );
   }

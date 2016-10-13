@@ -32,22 +32,21 @@ class GameCard extends React.Component {
 
     onClickHandle(event) {
       const { createSet } = this.props
-      const { id } = this.props.data
-
-      createSet(event, id)
+      const { id } = this.props
+      card = event.target.closest('.card')
+      $(card).css({"background-color": "#696969" })
+      return createSet(id)
     }
 
   render() {
     let { shape, shade, number, color, id } = this.props.data;
     const { createSet } = this.props;
     return(
-      <div className="row">
-        <div className="card" onClick={this.onClickHandle.bind(this)}>
+        <div className="col-md-4 card"  onClick={this.onClickHandle.bind(this)}>
           <div className="icon-container">
             { this.drawIcon(this.props.data) }
             </div>
         </div>
-      </div>
     )
   }
 }
